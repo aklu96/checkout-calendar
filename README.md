@@ -40,6 +40,8 @@ From within the root directory:
 npm install
 ```
 
+</br>
+
 ## Checkout Calendar API
 
 </br>
@@ -73,7 +75,7 @@ npm install
     }
 ```
 
-<br>
+</br>
 
 ### User rents listing; update availability
 
@@ -123,8 +125,6 @@ The PUT request is used for Create, Update, and Delete operations from an availa
 Note: Following endpoints are not supported by checkout calendar component.
 Endpoints available for new Listing Owner component.
 
-<br>
-
 ## Owner creates a new listing
 
 -POST `/api/listings/:listingId`
@@ -169,7 +169,7 @@ Endpoints available for new Listing Owner component.
     }
 ```
 
-<br>
+</br>
 
 ## Owner deletes listing
 
