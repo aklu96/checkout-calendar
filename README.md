@@ -44,13 +44,17 @@ npm install
 
 ## Checkout Calendar API
 
+All requests and responses are JSON objects
+
 ### Get listing information and availability
 
 -GET `/api/listings/:listingId`
 
+Returns an object containing information on listing, as well as nested array of months and days describing availability
+
 **Success Status Code:** `200`
 
-**Returns:** JSON object containing information on listing, as well as nested array of months and days describing availability
+**Response Body Format:**
 
 ```json
     {
@@ -81,7 +85,7 @@ npm install
 
 The PUT request is used for Create, Update, and Delete operations from an availability perspective. A user can either rent a listing, update their existing dates, delete their reservation, or update their information. In either case, the request contains an updated availability array, as well as a unique hash attributed to the renter. Validation occurs on the frontend.
 
-**Request Body**
+**Request Body Format:**
 
 ```json
     {
@@ -103,8 +107,7 @@ The PUT request is used for Create, Update, and Delete operations from an availa
 
 **Success Status Code:** `201`
 
-### Response format:
-* Returns: JSON
+**Response Body Format:**
 
 ```json
     {
@@ -120,6 +123,8 @@ The PUT request is used for Create, Update, and Delete operations from an availa
 
 </br>
 
+</br>
+
 Note: Following endpoints are not supported by checkout calendar component.
 Endpoints available for new Listing Owner component.
 
@@ -127,7 +132,7 @@ Endpoints available for new Listing Owner component.
 
 -POST `/api/listings/:listingId`
 
-**Request Body** A unique hash is created associated with the owner
+**Request Body:** A unique hash is created associated with the owner
 
 ```json
     {
@@ -152,8 +157,7 @@ Endpoints available for new Listing Owner component.
 
 **Success Status Code:** `201`
 
-### Response format:
-* Returns: JSON
+**Response Body Format:**
 
 ```json
     {
@@ -175,8 +179,7 @@ Endpoints available for new Listing Owner component.
 
 **Success Status Code:** `204`
 
-### Response format:
-* Returns: JSON
+**Response format:**
 
 ```json
     {
