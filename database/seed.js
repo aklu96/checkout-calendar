@@ -23,11 +23,12 @@ coefficient = 1.5 + 1.2 * Math.random();
 data.cleaningFee = Math.floor(data.price / coefficient);
 data.minStay = Math.random() < 0.1 ? 2 : 0;
 
-// will change to 3 months and the beginning of february
-const availability = [[], [], []];
-const day1 = moment('2021-02-01');
-for (let i = 1; i <= 89; i += 1) {
-  const month = day1.month() - 1;
+// 3 months or 12?
+// if 3, must play with the month designations
+const availability = [[], [], [], [], [], [], [], [], [], [], [], []];
+const day1 = moment('2021-01-01');
+for (let i = 1; i <= 365; i += 1) {
+  const month = day1.month();
   const day = day1.date() - 1;
   const obj = {};
 
@@ -35,7 +36,7 @@ for (let i = 1; i <= 89; i += 1) {
   obj.available = Math.random() < 0.4 ? 1 : 0;
   obj.dayOfWeek = day1.day();
   obj.day = day + 1;
-  obj.month = month + 1;
+  obj.month = month;
   availability[month][day] = obj;
   day1.add(1, 'd');
 }

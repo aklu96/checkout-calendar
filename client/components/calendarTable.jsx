@@ -57,6 +57,7 @@ const Th = styled.th`
 const CalendarTable = (props) => {
   const {
     month, handleDateClick, cellHover, title, availableAfterCheckin,
+    // eslint-disable-next-line react/prop-types
     checkinDate, hoverDate, checkoutDate, focus, today,
   } = props;
   const calendarRows = [[], [], [], [], [], []];

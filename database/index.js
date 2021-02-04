@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const mongoose = require('mongoose');
 
 const url = process.env.CONNECTIONSTRING || 'mongodb://localhost:27017/checkout';
@@ -13,73 +14,9 @@ mongoose.connection.on('error', (err) => {
 
 const checkoutSchema = new mongoose.Schema({
   _id: Number,
+  // availability is an array of months
   availability: [
-    [{
-      dayOfWeek: Number,
-      available: Number,
-      day: Number,
-      month: Number,
-    }],
-    [{
-      dayOfWeek: Number,
-      available: Number,
-      day: Number,
-      month: Number,
-    }],
-    [{
-      dayOfWeek: Number,
-      available: Number,
-      day: Number,
-      month: Number,
-    }],
-    [{
-      dayOfWeek: Number,
-      available: Number,
-      day: Number,
-      month: Number,
-    }],
-    [{
-      dayOfWeek: Number,
-      available: Number,
-      day: Number,
-      month: Number,
-    }],
-    [{
-      dayOfWeek: Number,
-      available: Number,
-      day: Number,
-      month: Number,
-    }],
-    [{
-      dayOfWeek: Number,
-      available: Number,
-      day: Number,
-      month: Number,
-    }],
-    [{
-      dayOfWeek: Number,
-      available: Number,
-      day: Number,
-      month: Number,
-    }],
-    [{
-      dayOfWeek: Number,
-      available: Number,
-      day: Number,
-      month: Number,
-    }],
-    [{
-      dayOfWeek: Number,
-      available: Number,
-      day: Number,
-      month: Number,
-    }],
-    [{
-      dayOfWeek: Number,
-      available: Number,
-      day: Number,
-      month: Number,
-    }],
+    // each month array has an object for each day of the month
     [{
       dayOfWeek: Number,
       available: Number,

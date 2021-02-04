@@ -220,6 +220,7 @@ class CalendarBox extends React.Component {
       handleDateClick, checkinDate, checkoutDate, focus,
       pricing, translate, translateLeft, setFocus,
       availableAfterCheckin, eraseStateDate, inputClick, translateRight,
+      // eslint-disable-next-line react/prop-types
       today,
     } = this.props;
     const { availability, hover } = this.state;

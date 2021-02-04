@@ -6,6 +6,7 @@ const CalendarRow = (props) => {
   const {
     row, handleDateClick, cellHover, checkinDate,
     hoverDate, checkoutDate, availableAfterCheckin,
+    // eslint-disable-next-line react/prop-types
     today,
   } = props;
   const cells = [];

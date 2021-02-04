@@ -19,6 +19,7 @@ const CalendarCarouselContainer = styled.div`
   height: 100%;
 `;
 
+// eslint-disable-next-line no-unused-vars
 const I = styled.i`
   height: 12px;
   width: 12px;
@@ -84,6 +85,7 @@ class CalendarCarousel extends React.Component {
     const {
       availability, handleDateClick, cellHover, availableAfterCheckin,
       translateRight, checkinDate, hoverDate, checkoutDate, focus,
+      // eslint-disable-next-line react/prop-types
       translate, translateLeft, today,
     } = this.props;
     const chevronPathLeft = 'm 13.7 16.29 a 1 1 0 1 1 -1.42 1.41 l -8 -8 a 1 1 0 0 1 0 -1.41 l 8 -8 a 1 1 0 1 1 1.42 1.41 l -7.29 7.29 Z';

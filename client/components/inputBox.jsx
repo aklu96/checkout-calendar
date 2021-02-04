@@ -197,6 +197,7 @@ class InputBox extends Component {
       focus, setFocus, availableAfterCheckin, passDownGuests,
       availability, pricing, handleDateClick, checkinDate,
       checkoutDate, eraseStateDate, updateGuests, translate,
+      // eslint-disable-next-line react/prop-types
       translateLeft, translateRight, guestInputClick, today,
     } = this.props;
 
