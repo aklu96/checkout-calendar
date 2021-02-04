@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "checkout-calendar",
   "version": "",
   "description": "",
   "author": "",
@@ -10,6 +10,7 @@
   "scripts": {
     "test": "jest --coverage",
     "seed": "node database/seed.js",
+    "build": "webpack",
     "react-dev": "webpack --watch",
     "start": "nodemon server/index.js",
     "containerStart": "node database/seed.js & webpack & node server/index.js"

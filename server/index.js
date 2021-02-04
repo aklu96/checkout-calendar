@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -18,6 +19,6 @@ app.use('/:id', express.static(path.join(__dirname, '..', 'public')));
 
 app.get('/api/checkout/:id', get);
 
-const PORT = 3010;
+const PORT = 3000;
 app.listen(PORT);
 console.log(`Server started, listening on http://localhost:${PORT}`);

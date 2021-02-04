@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { get } from 'axios';
@@ -39,6 +40,8 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 class App extends React.Component {
+  // takes in arguments of current day and month, and overall availability,
+  // and returns first available day/month as an object
   // eslint-disable-next-line consistent-return
   static calculateFirstAvailable(month, day, availability) {
     let days;
@@ -103,6 +106,7 @@ class App extends React.Component {
   getData(id) {
     get(`/api/checkout/${id}`).then(({ data }) => {
       const { availability } = data;
+      console.log(availability);
       delete data.availability;
       this.setState({
         availability,
