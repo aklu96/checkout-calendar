@@ -65,7 +65,13 @@ Returns an object containing information on listing, as well as nested array of 
           "available": "Number",
           "day": "Number",
           "month": "Number",
-          "renter": "String"
+          "renter": {
+            "id": "String",
+            "adults": "Number",
+            "children": "Number",
+            "infants": "Number",
+            "totalCost": "Number"
+          }
         }],
       ],
       "maxGuests": "Number",
@@ -96,12 +102,15 @@ The PUT request is used for Create, Update, and Delete operations from an availa
           "available": "Number",
           "day": "Number",
           "month": "Number",
-          "renter": "String"
+          "renter": {
+            "id": "String",
+            "adults": "Number",
+            "children": "Number",
+            "infants": "Number",
+            "totalCost": "Number"
+          }
         }],
       ],
-      "adults": "Number",
-      "children": "Number",
-      "infants": "Number",
     }
 ```
 
@@ -143,7 +152,6 @@ Endpoints available for new Listing Owner component.
           "available": "Number",
           "day": "Number",
           "month": "Number",
-          "renter": "String"
         }],
       ],
       "maxGuests": "Number",
