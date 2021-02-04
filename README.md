@@ -44,8 +44,6 @@ npm install
 
 ## Checkout Calendar API
 
-</br>
-
 ### Get listing information and availability
 
 -GET `/api/listings/:listingId`
@@ -125,7 +123,7 @@ The PUT request is used for Create, Update, and Delete operations from an availa
 Note: Following endpoints are not supported by checkout calendar component.
 Endpoints available for new Listing Owner component.
 
-## Owner creates a new listing
+### Owner creates a new listing
 
 -POST `/api/listings/:listingId`
 
@@ -171,7 +169,7 @@ Endpoints available for new Listing Owner component.
 
 </br>
 
-## Owner deletes listing
+### Owner deletes listing
 
 -DELETE `/api/listings/:listingId`
 
