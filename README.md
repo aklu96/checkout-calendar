@@ -4,13 +4,13 @@
 
 ## Related Projects
 
-  - https://github.com/the-casuals/casual-checkout-service
-  - https://github.com/the-casuals/photo_carousel
-  - https://github.com/the-casuals/reviews
-  - https://github.com/the-casuals/photo_gallery
+  - https://github.com/Sonic-Design/photo-carousel
+  - https://github.com/Sonic-Design/reviews
+  - https://github.com/Sonic-Design/photoGallery
+  
+  - Original project: https://github.com/the-casuals/casual-checkout-service
 
 ## Table of Contents
-
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
