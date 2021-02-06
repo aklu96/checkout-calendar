@@ -28,7 +28,7 @@ Note: owner endpoints are not currently accessible by front-end module
 
 ### Get listing information and availability
 
--GET `/api/checkout-calendar/:listingId`
+-GET `/api/booking-info/:listingId`
 
 Returns an object containing:
 1. information on listing
@@ -56,17 +56,17 @@ Returns an object containing:
       "serviceFee": "Number",
       "cleaningFee": "Number",
       "minStay": "Number",
-      "owner": "String",
-      "reservations": {
-        "renterEmail": "String",
+      "ownerEmail": "String",
+      "reservations": [{
         "id": "Number",
+        "renterEmail": "String",
         "check-in": "String",
         "check-out": "String",
         "numAdults": "Number",
         "numChildren": "Number",
         "numInfants": "Number",
         "totalCost": "Number"
-      }
+      }]
     }
 ```
 
@@ -74,7 +74,7 @@ Returns an object containing:
 
 ### Owner creates a new listing
 
--POST `/api/checkout-calendar/owners/:listingId`
+-POST `/api/booking-info/:listingId`
 
 **Request Body:**
 
@@ -94,7 +94,7 @@ Returns an object containing:
       "serviceFee": "Number",
       "cleaningFee": "Number",
       "minStay": "Number",
-      "owner": "String"
+      "ownerEmail": "String"
     }
 ```
 
@@ -118,7 +118,7 @@ Returns an object containing:
 
 ### Owner updates an existing listing
 
--PATCH `/api/checkout-calendar/owners/:listingId`
+-PATCH `/api/booking-info/:listingId`
 
 **Request Body:**
 
@@ -138,7 +138,7 @@ Returns an object containing:
       "serviceFee": "Number",
       "cleaningFee": "Number",
       "minStay": "Number",
-      "owner": "String"
+      "ownerEmail": "String"
     }
 ```
 
@@ -162,29 +162,15 @@ Returns an object containing:
 
 ### Owner deletes listing
 
--DELETE `/api/listings/:listingId`
+-DELETE `/api/booking-info/:listingId`
 
 **Success Status Code:** `204`
-
-**Response format:**
-
-```json
-    {
-      "message": "Listing deleted."
-    }
-```
-
-```json
-    {
-      "message": "Failed to delete listing."
-    }
-```
 
 </br>
 
 ### Renter makes a new reservation
 
--POST `/api/checkout-calendar/renters/:listingId`
+-POST `/api/booking-info/:listingId/reservations`
 
 **Request Body:**
 
@@ -220,7 +206,7 @@ Returns an object containing:
 
 ### Renter updates an existing reservation
 
--PATCH `/api/checkout-calendar/owners/:listingId/:reservationId`
+-PATCH `/api/booking-info/:listingId/reservations/:reservationId`
 
 **Request Body:**
 
@@ -254,25 +240,12 @@ Returns an object containing:
 
 </br>
 
-### Renter deletes resrrvation
+### Renter deletes reservation
 
--DELETE `/api/listings/:listingId/:reservationId`
+-DELETE `/api/booking-info/:listingId/reservations/:reservationId`
 
 **Success Status Code:** `204`
 
-**Response format:**
-
-```json
-    {
-      "message": "Reservation deleted."
-    }
-```
-
-```json
-    {
-      "message": "Failed to delete reservation."
-    }
-```
 </br>
 
 ## Database Schema Diagram
