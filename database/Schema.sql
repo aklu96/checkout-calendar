@@ -8,7 +8,7 @@ CREATE DATABASE listings;
 USE listings;
 
 CREATE TABLE listings (
-  listing_id SERIAL INT,
+  listing_id SERIAL,
   max_guests INT,
   price DECIMAL,
   owner_email VARCHAR(100),
@@ -19,7 +19,7 @@ CREATE TABLE listings (
 );
 
 CREATE TABLE reservations (
-  reservation_id SERIAL INT,
+  reservation_id SERIAL,
   renter_email VARCHAR(100),
   check_in VARCHAR(20),
   check_out VARCHAR(20),
@@ -33,7 +33,7 @@ CREATE TABLE reservations (
 );
 
 CREATE TABLE listing_dates (
-  id SERIAL INT,
+  id SERIAL,
   `date` VARCHAR(20),
   available INT,
   listing_id INT,
