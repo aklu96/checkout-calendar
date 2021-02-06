@@ -1,12 +1,39 @@
+## Shape Currently Expected by Front-End Module
+
+```json
+    {
+      "id": "Number",
+      "availability": [
+        [{
+          "dayOfWeek": "Number",
+          "available": "Number",
+          "day": "Number",
+          "month": "Number",
+        }],
+      ],
+      "maxGuests": "Number",
+      "price": "Number",
+      "serviceFee": "Number",
+      "cleaningFee": "Number",
+      "minStay": "Number",
+    }
+```
+
 ## Checkout Calendar API
 
 All requests and responses are JSON objects
 
+This endpoint is designed for two categories of users: renters and owners
+Note: owner endpoints are not currently accessible by front-end module
+
 ### Get listing information and availability
 
--GET `/api/listings/:listingId`
+-GET `/api/checkout-calendar/:listingId`
 
-Returns an object containing information on listing, as well as nested array of months and days describing availability
+Returns an object containing:
+1. information on listing
+2. listing availability, represented as a nested array of months and days
+3. an object containing data on reservations at this listing
 
 **Success Status Code:** `200`
 
@@ -21,13 +48,7 @@ Returns an object containing information on listing, as well as nested array of 
           "available": "Number",
           "day": "Number",
           "month": "Number",
-          "renter": {
-            "id": "String",
-            "adults": "Number",
-            "children": "Number",
-            "infants": "Number",
-            "totalCost": "Number"
-          }
+          "reservation_id": "Number"
         }],
       ],
       "maxGuests": "Number",
@@ -35,69 +56,27 @@ Returns an object containing information on listing, as well as nested array of 
       "serviceFee": "Number",
       "cleaningFee": "Number",
       "minStay": "Number",
-      "owner": "String"
+      "owner": "String",
+      "reservations": {
+        "renterEmail": "String",
+        "id": "Number",
+        "check-in": "String",
+        "check-out": "String",
+        "numAdults": "Number",
+        "numChildren": "Number",
+        "numInfants": "Number",
+        "totalCost": "Number"
+      }
     }
 ```
 
 </br>
-
-### User rents listing; update availability
-
--PUT `/api/listings/:listingId`
-
-The PUT request is used for Create, Update, and Delete operations from an availability perspective. A user can either rent a listing, update their existing dates, delete their reservation, or update their information. In either case, the request contains an updated availability array, as well as a unique hash attributed to the renter. Validation occurs on the frontend.
-
-**Request Body Format:**
-
-```json
-    {
-      "id": "Number",
-      "availability": [
-        [{
-          "dayOfWeek": "Number",
-          "available": "Number",
-          "day": "Number",
-          "month": "Number",
-          "renter": {
-            "id": "String",
-            "adults": "Number",
-            "children": "Number",
-            "infants": "Number",
-            "totalCost": "Number"
-          }
-        }],
-      ],
-    }
-```
-
-**Success Status Code:** `201`
-
-**Response Body Format:**
-
-```json
-    {
-      "message": "Successfully updated availability."
-    }
-```
-
-```json
-    {
-      "message": "Failed to update availability."
-    }
-```
-
-</br>
-
-</br>
-
-Note: Following endpoints are not supported by checkout calendar component.
-Endpoints available for new Listing Owner component.
 
 ### Owner creates a new listing
 
--POST `/api/listings/:listingId`
+-POST `/api/checkout-calendar/owners/:listingId`
 
-**Request Body:** A unique hash is created associated with the owner
+**Request Body:**
 
 ```json
     {
@@ -137,6 +116,50 @@ Endpoints available for new Listing Owner component.
 
 </br>
 
+### Owner updates an existing listing
+
+-PATCH `/api/checkout-calendar/owners/:listingId`
+
+**Request Body:**
+
+```json
+    {
+      "id": "Number",
+      "availability": [
+        [{
+          "dayOfWeek": "Number",
+          "available": "Number",
+          "day": "Number",
+          "month": "Number",
+        }],
+      ],
+      "maxGuests": "Number",
+      "price": "Number",
+      "serviceFee": "Number",
+      "cleaningFee": "Number",
+      "minStay": "Number",
+      "owner": "String"
+    }
+```
+
+**Success Status Code:** `201`
+
+**Response Body Format:**
+
+```json
+    {
+      "message": "Listing updated."
+    }
+```
+
+```json
+    {
+      "message": "Failed to update listing."
+    }
+```
+
+</br>
+
 ### Owner deletes listing
 
 -DELETE `/api/listings/:listingId`
@@ -156,3 +179,102 @@ Endpoints available for new Listing Owner component.
       "message": "Failed to delete listing."
     }
 ```
+
+</br>
+
+### Renter makes a new reservation
+
+-POST `/api/checkout-calendar/renters/:listingId`
+
+**Request Body:**
+
+```json
+    {
+      "renterEmail": "String",
+      "check-in": "String",
+      "check-out": "String",
+      "numAdults": "Number",
+      "numChildren": "Number",
+      "numInfants": "Number",
+      "totalCost": "Number"
+    }
+```
+
+**Success Status Code:** `201`
+
+**Response Body Format:**
+
+```json
+    {
+      "message": "New reservation created."
+    }
+```
+
+```json
+    {
+      "message": "Failed to create new reservation."
+    }
+```
+
+</br>
+
+### Renter updates an existing reservation
+
+-PATCH `/api/checkout-calendar/owners/:listingId/:reservationId`
+
+**Request Body:**
+
+```json
+    {
+      "renterEmail": "String",
+      "check-in": "String",
+      "check-out": "String",
+      "numAdults": "Number",
+      "numChildren": "Number",
+      "numInfants": "Number",
+      "totalCost": "Number"
+    }
+```
+
+**Success Status Code:** `201`
+
+**Response Body Format:**
+
+```json
+    {
+      "message": "Reservation updated."
+    }
+```
+
+```json
+    {
+      "message": "Failed to update reservation."
+    }
+```
+
+</br>
+
+### Renter deletes resrrvation
+
+-DELETE `/api/listings/:listingId/:reservationId`
+
+**Success Status Code:** `204`
+
+**Response format:**
+
+```json
+    {
+      "message": "Reservation deleted."
+    }
+```
+
+```json
+    {
+      "message": "Failed to delete reservation."
+    }
+```
+</br>
+
+## Database Schema Diagram
+
+<img src="/database/schemaDiagram.png">
