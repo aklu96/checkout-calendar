@@ -1,9 +1,3 @@
-// max_guests INT,
-// price DECIMAL,
-// service_fee DECIMAL,
-// cleaning_fee DECIMAL,
-// min_stay INT
-
 const faker = require('faker');
 const fs = require('fs');
 const path = require('path');
