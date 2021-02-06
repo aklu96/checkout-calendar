@@ -1,4 +1,4 @@
-const { checkoutModel } = require('../../database');
+const { checkoutModel } = require('../../database-archive');
 
 module.exports = {
   getSeed: (id, cb) => {

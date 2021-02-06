@@ -9,11 +9,11 @@ USE listings;
 
 CREATE TABLE listings (
   listing_id SERIAL PRIMARY KEY,
-  max_guests INT,
-  price DECIMAL,
   owner_email VARCHAR(100),
-  cleaning_fee DECIMAL,
-  service_fee DECIMAL,
+  max_guests INT,
+  price INT,
+  service_fee INT,
+  cleaning_fee INT,
   min_stay INT
 );
 
@@ -22,7 +22,7 @@ CREATE TABLE reservations (
   renter_email VARCHAR(100),
   check_in VARCHAR(20),
   check_out VARCHAR(20),
-  total_cost DECIMAL,
+  total_cost INT,
   num_adults INT,
   num_children INT,
   num_infants INT,
@@ -36,3 +36,5 @@ CREATE TABLE listing_dates (
   listing_id INT FOREIGN KEY REFERENCES listings(listing_id),
   reservation_id INT FOREIGN KEY REFERENCES reservations(reservation_id)
 );
+
+\COPY listings FROM '/Users/alexklyuev/Documents/Coding/Hack Reactor/Projects/SDC/checkout-calendar/database/CSV/listings.csv' WITH CSV HEADER DELIMITER ',';
