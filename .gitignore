@@ -24,3 +24,6 @@ build/
 dist/
 
 public/bundle.js
+
+# Used for seeding database
+CSV

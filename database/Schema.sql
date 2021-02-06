@@ -12,8 +12,8 @@ CREATE TABLE listings (
   max_guests INT,
   price DECIMAL,
   owner_email VARCHAR(100),
-  cleaning_fee VARCHAR(20),
-  service_fee VARCHAR(20),
+  cleaning_fee DECIMAL,
+  service_fee DECIMAL,
   min_stay INT
 );
 
@@ -31,7 +31,7 @@ CREATE TABLE reservations (
 
 CREATE TABLE listing_dates (
   id SERIAL PRIMARY KEY,
-  `date` VARCHAR(20),
+  _date VARCHAR(20),
   available INT,
   listing_id INT FOREIGN KEY REFERENCES listings(listing_id),
   reservation_id INT FOREIGN KEY REFERENCES reservations(reservation_id)
