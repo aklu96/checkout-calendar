@@ -1,35 +1,31 @@
-const faker = require('faker');
+// id SERIAL PRIMARY KEY,
+// date VARCHAR(20),
+// available INT,
+// listing_id INT FOREIGN KEY REFERENCES listings(listing_id),
+// reservation_id INT FOREIGN KEY REFERENCES reservations(reservation_id)
+
 const fs = require('fs');
 const path = require('path');
-
-// create fake data
-const dataGenerator = () => {
-  const ownerEmail = `${faker.internet.userName()}@${faker.internet.domainName()}`;
-  const maxGuests = faker.finance.amount(1, 14, 0);
-  const price = faker.finance.amount(70, 1000, 0);
-  let coefficient = 3.5 + 2 * Math.random();
-  const serviceFee = Math.floor(price / coefficient);
-  coefficient = 1.5 + 1.2 * Math.random();
-  const cleaningFee = Math.floor(price / coefficient);
-  const minStay = Math.random() < 0.1 ? 2 : 0;
-  const data = `${ownerEmail},${maxGuests},${price},${serviceFee},${cleaningFee},${minStay}`;
-  return data;
-};
+const faker = require('faker');
+const moment = require('moment');
 
 // connect to CSV, add headers
-const writeListings = fs.createWriteStream(path.join(__dirname, '..', 'CSV', 'listings.csv'));
-writeListings.write('listing_id,owner_email,max_guests,price,service_fee,cleaning_fee,min_stay\n', 'utf8');
+const writeListingDates = fs.createWriteStream(path.join(__dirname, '..', 'CSV', 'listing_dates.csv'));
+writeListingDates.write('id,date,available,listing_id,reservation_id\n', 'utf8');
 
 // write to CSV while handling drain event
-const writeTenListings = (writer, encoding, callback) => {
-  let i = 10;
+const writeTenListingDates = (writer, encoding, callback) => {
+  let i = 10 * 89;
   let listingId = 0;
   function write() {
     let ok = true;
     do {
+      if (i % 89 === 0) {
+        listingId += 1;
+      }
       i -= 1;
-      listingId += 1;
-      const data = `${listingId},${dataGenerator()}\n`;
+
+      const data
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
@@ -47,6 +43,6 @@ const writeTenListings = (writer, encoding, callback) => {
   write();
 };
 
-writeTenListings(writeListings, 'utf8', () => {
-  writeListings.end();
+writeTenListingDates(writeListingDates, 'utf8', () => {
+  writeListingDates.end();
 });

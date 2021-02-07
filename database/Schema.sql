@@ -17,6 +17,7 @@ CREATE TABLE listings (
   min_stay INT
 );
 
+-- This table will not be seeded with data; when users rent out listings, it will keep track of that data
 CREATE TABLE reservations (
   reservation_id SERIAL PRIMARY KEY,
   renter_email VARCHAR(100),
@@ -31,7 +32,7 @@ CREATE TABLE reservations (
 
 CREATE TABLE listing_dates (
   id SERIAL PRIMARY KEY,
-  _date VARCHAR(20),
+  `date` VARCHAR(20),
   available INT,
   listing_id INT FOREIGN KEY REFERENCES listings(listing_id),
   reservation_id INT FOREIGN KEY REFERENCES reservations(reservation_id)
