@@ -5,7 +5,7 @@ DROP DATABASE IF EXISTS listings;
 
 CREATE DATABASE listings;
 
-USE listings;
+\c listings;
 
 CREATE TABLE listings (
   listing_id SERIAL PRIMARY KEY,
@@ -27,15 +27,16 @@ CREATE TABLE reservations (
   num_adults INT,
   num_children INT,
   num_infants INT,
-  listing_id INT FOREIGN KEY REFERENCES listings(listing_id)
+  listing_id INT REFERENCES listings(listing_id)
 );
 
 CREATE TABLE listing_dates (
   id SERIAL PRIMARY KEY,
-  `date` VARCHAR(20),
+  _date VARCHAR(20),
   available INT,
-  listing_id INT FOREIGN KEY REFERENCES listings(listing_id),
-  reservation_id INT FOREIGN KEY REFERENCES reservations(reservation_id)
+  listing_id INT REFERENCES listings(listing_id),
+  reservation_id INT REFERENCES reservations(reservation_id)
 );
 
 \COPY listings FROM '/Users/alexklyuev/Documents/Coding/Hack Reactor/Projects/SDC/checkout-calendar/database/CSV/listings.csv' WITH CSV HEADER DELIMITER ',';
+\COPY listing_dates FROM '/Users/alexklyuev/Documents/Coding/Hack Reactor/Projects/SDC/checkout-calendar/database/CSV/listing_dates.csv' WITH CSV HEADER DELIMITER ',' NULL AS 'null';
