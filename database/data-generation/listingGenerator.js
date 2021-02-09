@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const faker = require('faker');
 const fs = require('fs');
 const path = require('path');
@@ -21,14 +22,19 @@ const writeListings = fs.createWriteStream(path.join(__dirname, '..', 'CSV', 'li
 writeListings.write('listing_id,owner_email,max_guests,price,service_fee,cleaning_fee,min_stay\n', 'utf8');
 
 // write to CSV while handling drain event
-const writeTenListings = (writer, encoding, callback) => {
-  let i = 10;
+const writeMillionListings = (writer, encoding, callback) => {
+  let i = 1000000;
   let listingId = 0;
   function write() {
     let ok = true;
     do {
-      i -= 1;
       listingId += 1;
+      i -= 1;
+
+      if (i % 10000 === 0) {
+        console.log(`${1000000 - i} records have been seeded...`);
+      }
+
       const data = `${listingId},${dataGenerator()}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
@@ -47,6 +53,6 @@ const writeTenListings = (writer, encoding, callback) => {
   write();
 };
 
-writeTenListings(writeListings, 'utf8', () => {
+writeMillionListings(writeListings, 'utf8', () => {
   writeListings.end();
 });

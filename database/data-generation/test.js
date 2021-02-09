@@ -1,23 +1,17 @@
 /* eslint-disable no-console */
-// id SERIAL PRIMARY KEY,
-// date VARCHAR(20),
-// available INT,
-// listing_id INT FOREIGN KEY REFERENCES listings(listing_id),
-// reservation_id INT FOREIGN KEY REFERENCES reservations(reservation_id)
-
 const fs = require('fs');
 const path = require('path');
 const moment = require('moment');
 
 // connect to CSV, add headers
-const writeListingDates = fs.createWriteStream(path.join(__dirname, '..', 'CSV', 'listing_dates.csv'));
+const writeListingDates = fs.createWriteStream(path.join(__dirname, '..', 'CSV', 'test.csv'));
 writeListingDates.write('id,_date,available,listing_id,reservation_id\n', 'utf8');
 
 // write to CSV while handling drain event
 const writeTenListingDates = (writer, encoding, callback) => {
-  let i = 1000000 * 89;
-  let listingId = 0;
-  let id = 0;
+  let i = 10000000 * 89;
+  let listingId = 9999990;
+  let id = 889999110;
   let day1;
 
   function write() {
@@ -32,21 +26,22 @@ const writeTenListingDates = (writer, encoding, callback) => {
       i -= 1;
 
       if (i % 890000 === 0) {
-        console.log(`${(89000000 - i) / 890000}% of records have been seeded...`);
+        console.log(`${890000000 - i} records have been seeded...`);
       }
 
       const date = `${day1.month() + 1}-${day1.date()}-${day1.year()}`;
       const available = Math.random() < 0.4 ? 1 : 0;
       const data = `${id},${date},${available},${listingId},null\n`;
-      if (i === 0) {
+      if (i === 889999110) {
         writer.write(data, encoding, callback);
       } else {
         // see if we should continue, or wait
-        // don't pass the callback, because we're not done yet.ß
+        // don't pass the callback, because we're not done yet.
+        console.log('draining...');
         ok = writer.write(data, encoding);
       }
-    } while (i > 0 && ok);
-    if (i > 0) {
+    } while (i > 889999110 && ok);
+    if (i > 889999110) {
       // had to stop early!
       // write some more once it drains
       writer.once('drain', write);

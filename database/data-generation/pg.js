@@ -1,12 +1,8 @@
-const moment = require('moment');
+let i = 100000;
+do {
+  i -= 1;
 
-// February 1st, 2021
-let day1 = moment('2021-02-01');
-
-console.log(day1);
-
-console.log(day1.date());
-day1.add(1, 'd');
-console.log(day1.date());
-
-console.log(`${day1.month() + 1}-${day1.date()}-${day1.year()}`);
+  if (i % 10000 === 0) {
+    console.log(`${100000 - i} records have been seeded...`);
+  }
+} while (i > 0);
