@@ -6,6 +6,8 @@
 
 /* eslint-disable no-console */
 const express = require('express');
+// eslint-disable-next-line no-unused-vars
+const newrelic = require('newrelic');
 const bodyParser = require('body-parser');
 const path = require('path');
 const compression = require('compression');

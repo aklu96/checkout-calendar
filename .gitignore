@@ -27,3 +27,6 @@ public/bundle.js
 
 # Used for seeding database
 database/CSV
+
+# Stress Testing
+newrelic.js
