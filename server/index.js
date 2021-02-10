@@ -1,3 +1,9 @@
+// TO-DO: COMPLETE API SUITE
+// The following have not yet been added:
+// - Reservations for "getListings"
+// - availability for owner API
+// - full renter API
+
 /* eslint-disable no-console */
 const express = require('express');
 const bodyParser = require('body-parser');
