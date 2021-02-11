@@ -1,4 +1,8 @@
+TO-DO: Update description with proper text format
+
 ## Shape Currently Expected by Front-End Module
+
+Note: current keys are actually in snake_case  (e.g. owner_email) rather than camelCase (ownerEmail)
 
 ```json
     {

@@ -5,34 +5,38 @@ DROP DATABASE IF EXISTS listings;
 
 CREATE DATABASE listings;
 
-USE listings;
+\c listings;
 
 CREATE TABLE listings (
   listing_id SERIAL PRIMARY KEY,
-  max_guests INT,
-  price DECIMAL,
   owner_email VARCHAR(100),
-  cleaning_fee VARCHAR(20),
-  service_fee VARCHAR(20),
+  max_guests INT,
+  price INT,
+  service_fee INT,
+  cleaning_fee INT,
   min_stay INT
 );
 
+-- This table will not be seeded with data; when users rent out listings, it will keep track of that data
 CREATE TABLE reservations (
   reservation_id SERIAL PRIMARY KEY,
   renter_email VARCHAR(100),
   check_in VARCHAR(20),
   check_out VARCHAR(20),
-  total_cost DECIMAL,
+  total_cost INT,
   num_adults INT,
   num_children INT,
   num_infants INT,
-  listing_id INT FOREIGN KEY REFERENCES listings(listing_id)
+  listing_id INT REFERENCES listings(listing_id)
 );
 
 CREATE TABLE listing_dates (
   id SERIAL PRIMARY KEY,
-  `date` VARCHAR(20),
+  _date VARCHAR(20),
   available INT,
-  listing_id INT FOREIGN KEY REFERENCES listings(listing_id),
-  reservation_id INT FOREIGN KEY REFERENCES reservations(reservation_id)
+  listing_id INT REFERENCES listings(listing_id),
+  reservation_id INT REFERENCES reservations(reservation_id)
 );
+
+\COPY listings FROM '/Users/alexklyuev/Documents/Coding/Hack Reactor/Projects/SDC/checkout-calendar/database/CSV/listings.csv' WITH CSV HEADER DELIMITER ',';
+\COPY listing_dates FROM '/Users/alexklyuev/Documents/Coding/Hack Reactor/Projects/SDC/checkout-calendar/database/CSV/listing_dates.csv' WITH CSV HEADER DELIMITER ',' NULL AS 'null';

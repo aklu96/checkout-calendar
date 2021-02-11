@@ -9,11 +9,10 @@
   },
   "scripts": {
     "test": "jest --coverage",
-    "seed": "node database/seed.js",
     "build": "webpack",
     "react-dev": "webpack --watch",
     "start": "nodemon server/index.js",
-    "containerStart": "node database/seed.js & webpack & node server/index.js"
+    "docker": "node database/seed.js & webpack & node server/index.js"
   },
   "dependencies": {
     "@babel/core": "^7.12.10",
@@ -29,6 +28,8 @@
     "jest": "^26.6.3",
     "moment": "^2.29.1",
     "mongoose": "^5.11.11",
+    "newrelic": "^7.1.1",
+    "pg": "^8.5.1",
     "prop-types": "^15.7.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
