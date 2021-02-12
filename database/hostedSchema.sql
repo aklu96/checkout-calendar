@@ -38,6 +38,6 @@ CREATE TABLE listing_dates (
   reservation_id INT REFERENCES reservations(reservation_id)
 );
 
-\COPY listings FROM '/Users/alexklyuev/Documents/Coding/Hack Reactor/Projects/SDC/checkout-calendar/database/CSV/listings.csv' WITH CSV HEADER DELIMITER ',';
-\COPY listing_dates FROM '/Users/alexklyuev/Documents/Coding/Hack Reactor/Projects/SDC/checkout-calendar/database/CSV/listing_dates.csv' WITH CSV HEADER DELIMITER ',' NULL AS 'null';
-\CREATE INDEX listing_dates_listing_id_idx ON listing_dates(listing_id);
+\COPY listings FROM '/home/ubuntu/checkout-calendar/database/CSV/listings.csv' WITH CSV HEADER DELIMITER ',';
+\COPY listing_dates FROM '/home/ubuntu/checkout-calendar/database/CSV/listing_dates.csv' WITH CSV HEADER DELIMITER ',' NULL AS 'null';
+CREATE INDEX listing_dates_listing_id_idx ON listing_dates(listing_id);
