@@ -11,6 +11,13 @@ export let errorRate = new Rate('errors');
 
 export let options = {
   stages: [
+    // short test:
+    // { duration: '30s', target: 100 },
+    // { duration: '30s', target: 500 },
+    // { duration: '30s', target: 1000 },
+    // { duration: '30s', target: 1500 },
+    // { duration: '1m', target: 100 },
+    // full test:
     { duration: '2m', target: 100 },
     { duration: '5m', target: 200 },
     { duration: '2m', target: 500 },
