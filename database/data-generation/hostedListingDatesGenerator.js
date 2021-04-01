@@ -2,7 +2,8 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'alexklyuev',
+  user: 'ubuntu',
+  password: 'ubuntu',
   database: 'test',
   port: 5432,
 });
@@ -19,9 +20,20 @@ let counter = 10;
 let listingId = 0;
 let id = 0;
 
-const writeToDbCallback = (callback) => {
+// this callback is invoked after the csv is written
+// it will copy to the db, then upon completion of that, invoke the next round of seeding
+const writeToDbCallback = (writer) => {
   pool.query(`COPY listing_dates FROM '${__dirname}/../CSV/test/listing_dates_${counter}.csv' WITH CSV HEADER DELIMITER ',' NULL AS 'null';`, () => {
-    callback();
+    counter -= 1;
+    const percentage = 100 * ((10 - counter) / 10);
+    console.log(`${percentage}% of records have been seeded...`);
+
+    if (counter > 0) {
+      // eslint-disable-next-line no-use-before-define
+      writeMillionListingDates('utf8');
+    } else {
+      writer.end();
+    }
   });
 };
 
@@ -51,17 +63,7 @@ const writeMillionListingDates = (encoding) => {
         // iteration has ended - check if it's the last file as well
         // eslint-disable-next-line no-loop-func
         writer.write(data, encoding, () => {
-          writeToDbCallback(() => {
-            counter -= 1;
-            const percentage = 100 * ((10 - counter) / 10);
-            console.log(`${percentage}% of records have been seeded...`);
-
-            if (counter > 0) {
-              writeMillionListingDates('utf8');
-            } else {
-              writer.end();
-            }
-          });
+          writeToDbCallback(writer);
         });
       } else {
         // see if we should continue, or wait

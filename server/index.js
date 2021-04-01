@@ -11,11 +11,13 @@ const newrelic = require('newrelic');
 const bodyParser = require('body-parser');
 const path = require('path');
 const compression = require('compression');
+const morgan = require('morgan');
 
 const controller = require('./controller');
 
 const app = express();
 
+app.use(morgan('dev'));
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
