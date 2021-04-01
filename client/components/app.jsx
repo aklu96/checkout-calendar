@@ -104,7 +104,7 @@ class App extends React.Component {
 
   /* eslint no-param-reassign: ["error", { "props": false }] */
   getData(id) {
-    get(`/api/checkout/${id}`).then(({ data }) => {
+    get(`/api/booking-info/${id}`).then(({ data }) => {
       const { availability } = data;
       console.log(availability);
       delete data.availability;
