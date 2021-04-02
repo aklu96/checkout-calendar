@@ -1,4 +1,4 @@
-FROM node:14.15.0
+FROM node:latest
 
 ENV NODE_ENV=production
 
@@ -10,4 +10,4 @@ RUN npm install --production
 
 COPY . .
 
-CMD [ "npm", "run", "containerStart" ]
+CMD [ "npm", "start" ]
