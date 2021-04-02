@@ -39,5 +39,5 @@ CREATE TABLE listing_dates (
 );
 
 \COPY listings FROM 'listings.CSV' WITH CSV HEADER DELIMITER ',' NULL AS 'null';
-\COPY listing_dates FROM 'listing_dates_4.CSV' WITH CSV HEADER DELIMITER ',' NULL AS 'null';
+\COPY listing_dates FROM 'listing_dates_1.CSV' WITH CSV HEADER DELIMITER ',' NULL AS 'null';
 CREATE INDEX listing_dates_listing_id_idx ON listing_dates(listing_id);

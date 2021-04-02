@@ -106,7 +106,6 @@ class App extends React.Component {
   getData(id) {
     get(`/api/booking-info/${id}`).then(({ data }) => {
       const { availability } = data;
-      console.log(availability);
       delete data.availability;
       this.setState({
         availability,
