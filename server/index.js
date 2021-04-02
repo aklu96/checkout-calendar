@@ -26,11 +26,11 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }));
 
+// loader.io token
+app.use('/loaderio-85d5287cfb6612055dddf74fa8c69236.txt', express.static(path.join(__dirname, '..', 'public', 'loaderio-85d5287cfb6612055dddf74fa8c69236.txt')));
+
 app.use('/:id/bundle', express.static(path.join(__dirname, '..', 'public', 'bundle.js')));
 app.use('/:id', express.static(path.join(__dirname, '..', 'public')));
-
-// loader.io token
-app.use('/loaderio-85d5287cfb6612055dddf74fa8c69236', express.static(path.join(__dirname, '..', 'loaderio_token.txt')));
 
 // get all listings
 app.get('/api/booking-info/:listingId', controller.getListings);
