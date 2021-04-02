@@ -11,8 +11,9 @@
     "test": "jest --coverage",
     "build": "webpack",
     "react-dev": "webpack --watch",
-    "start": "nodemon server/index.js",
-    "docker": "node database/seed.js & webpack & node server/index.js"
+    "server-dev": "nodemon server/index.js",
+    "docker": "node database/seed.js & webpack & node server/index.js",
+    "start": "node server"
   },
   "dependencies": {
     "@babel/core": "^7.12.10",
