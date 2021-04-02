@@ -29,6 +29,9 @@ app.use(bodyParser.urlencoded({
 app.use('/:id/bundle', express.static(path.join(__dirname, '..', 'public', 'bundle.js')));
 app.use('/:id', express.static(path.join(__dirname, '..', 'public')));
 
+// loader.io token
+app.use('/loaderio-85d5287cfb6612055dddf74fa8c69236', express.static(path.join(__dirname, '..', 'loaderio_token.txt')));
+
 // get all listings
 app.get('/api/booking-info/:listingId', controller.getListings);
 
@@ -41,8 +44,6 @@ app.delete('/api/booking-info/:listingId', controller.owner.deleteListing);
 app.get('/api/booking-info/:listingId/reservations', controller.renter.addReservation);
 app.get('/api/booking-info/:listingId/reservations/:reservationId', controller.renter.updateReservation);
 app.get('/api/booking-info/:listingId/reservations/:reservationId', controller.renter.deleteReservation);
-
-app.get('/loaderio-85d5287cfb6612055dddf74fa8c69236', express.static(path.join(__dirname, '..', 'public', 'loaderio_token.txt')));
 
 app.listen(PORT, () => {
   console.log(`Server started, listening on http://localhost:${PORT}`);
