@@ -1,15 +1,4 @@
 /* eslint-disable no-console */
-const { Pool } = require('pg');
-
-const pool = new Pool({
-  user: 'ubuntu',
-  password: 'ubuntu',
-  database: 'test',
-  port: 5432,
-});
-
-pool.connect();
-
 const fs = require('fs');
 const path = require('path');
 const moment = require('moment');
@@ -20,29 +9,27 @@ let counter = 10;
 let listingId = 0;
 let id = 0;
 
-// this callback is invoked after the csv is written
-// it will copy to the db, then upon completion of that, invoke the next round of seeding
-const writeToDbCallback = (writer) => {
-  pool.query(`COPY listing_dates FROM '${__dirname}/../CSV/test/listing_dates_${counter}.csv' WITH CSV HEADER DELIMITER ',' NULL AS 'null';`, () => {
-    counter -= 1;
-    const percentage = 100 * ((10 - counter) / 10);
-    console.log(`${percentage}% of records have been seeded...`);
+// this callback is invoked after a csv for 1/10th of the data is written
+// it will invoke the next round of seeding
+const counterCallback = (writer) => {
+  counter -= 1;
+  const percentage = 100 * ((10 - counter) / 10);
+  console.log(`${percentage}% of records have been seeded...`);
 
-    if (counter > 0) {
-      // eslint-disable-next-line no-use-before-define
-      writeMillionListingDates('utf8');
-    } else {
-      writer.end();
-    }
-  });
+  if (counter > 0) {
+    // eslint-disable-next-line no-use-before-define
+    writeOneTenthListingDates('utf8');
+  } else {
+    writer.end();
+  }
 };
 
 // write to CSV while handling drain event
-const writeMillionListingDates = (encoding) => {
-  const writer = fs.createWriteStream(path.join(__dirname, '..', 'CSV', 'test', `listing_dates_${counter}.csv`));
+const writeOneTenthListingDates = (encoding) => {
+  const writer = fs.createWriteStream(path.join(__dirname, '..', 'CSV', 'portions', `listing_dates_${counter}.csv`));
   writer.write('id,_date,available,listing_id,reservation_id\n', 'utf8');
 
-  let i = 890;
+  let i = 8900000;
   let day1;
 
   function write() {
@@ -63,7 +50,7 @@ const writeMillionListingDates = (encoding) => {
         // iteration has ended - check if it's the last file as well
         // eslint-disable-next-line no-loop-func
         writer.write(data, encoding, () => {
-          writeToDbCallback(writer);
+          counterCallback(writer);
         });
       } else {
         // see if we should continue, or wait
@@ -80,4 +67,4 @@ const writeMillionListingDates = (encoding) => {
   write();
 };
 
-writeMillionListingDates('utf8');
+writeOneTenthListingDates('utf8');
