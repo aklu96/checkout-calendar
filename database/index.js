@@ -1,11 +1,17 @@
+/* eslint-disable no-console */
 const { Pool } = require('pg');
+const dbpassword = require('./config.js');
 
 const pool = new Pool({
-  user: 'alexklyuev',
-  database: 'listings',
+  host: '45.79.68.105',
+  user: 'postgres',
+  password: dbpassword,
+  database: 'test',
   port: 5432,
 });
 
-pool.connect();
+pool.connect(() => {
+  console.log('Connected to Postgres');
+});
 
 module.exports = pool;
