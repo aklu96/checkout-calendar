@@ -15,6 +15,8 @@ const morgan = require('morgan');
 
 const controller = require('./controller');
 
+const PORT = 80;
+
 const app = express();
 
 app.use(morgan('dev'));
@@ -40,7 +42,6 @@ app.get('/api/booking-info/:listingId/reservations', controller.renter.addReserv
 app.get('/api/booking-info/:listingId/reservations/:reservationId', controller.renter.updateReservation);
 app.get('/api/booking-info/:listingId/reservations/:reservationId', controller.renter.deleteReservation);
 
-const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server started, listening on http://localhost:${PORT}`);
 });
