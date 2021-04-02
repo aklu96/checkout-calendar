@@ -42,6 +42,8 @@ app.get('/api/booking-info/:listingId/reservations', controller.renter.addReserv
 app.get('/api/booking-info/:listingId/reservations/:reservationId', controller.renter.updateReservation);
 app.get('/api/booking-info/:listingId/reservations/:reservationId', controller.renter.deleteReservation);
 
+app.get('/loaderio-85d5287cfb6612055dddf74fa8c69236', express.static(path.join(__dirname, '..', 'public', 'loaderio_token.txt')));
+
 app.listen(PORT, () => {
   console.log(`Server started, listening on http://localhost:${PORT}`);
 });
