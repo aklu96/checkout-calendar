@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // loader.io token
-app.use('/loaderio-85d5287cfb6612055dddf74fa8c69236.txt', express.static(path.join(__dirname, '..', 'public', 'loaderio-85d5287cfb6612055dddf74fa8c69236.txt')));
+app.use('/loaderio-b36d8d934e77496e5e071900395735de.txt', express.static(path.join(__dirname, '..', 'public', 'loaderio-b36d8d934e77496e5e071900395735de.txt')));
 
 app.use('/:id/bundle', express.static(path.join(__dirname, '..', 'public', 'bundle.js')));
 app.use('/:id', express.static(path.join(__dirname, '..', 'public')));
