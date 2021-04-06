@@ -1,6 +1,6 @@
 # Checkout Calendar
 
-> Create a home listing page for a vacation rental application using a service based architecture. Focus on front end.
+> Create a home listing page for a vacation rental application using a service based architecture in order to support up to 1M listings.
 
 ## Related Projects
 
@@ -26,7 +26,6 @@
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
-- ArangoDB
 - Node 6.13.0
 - etc
 
