@@ -2,7 +2,7 @@
 
 > Create a home listing page for a vacation rental application using a service based architecture in order to support up to 1M listings.
 
-<img src="./checkout-calendar.gif" width="500">
+<img src="./checkout-calendar.gif" align="center" width="750">
 
 ## Related Projects
 
