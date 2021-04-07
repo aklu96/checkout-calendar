@@ -2,12 +2,14 @@
 
 > Create a home listing page for a vacation rental application using a service based architecture in order to support up to 1M listings.
 
+![caption](./checkout-calendar.gif)
+
 ## Related Projects
 
   - https://github.com/Sonic-Design/photo-carousel
   - https://github.com/Sonic-Design/reviews
   - https://github.com/Sonic-Design/photoGallery
-  
+
   - Original project: https://github.com/the-casuals/casual-checkout-service
 
 ## Table of Contents
