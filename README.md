@@ -1,6 +1,6 @@
 # Checkout Calendar
 
-> Create a home listing page for a vacation rental application using a service based architecture in order to support up to 1M listings.
+> Create a home listing page for a vacation rental application using a service based architecture in order to support up to 1M listings and associated data such as 3-month availability (total ~90M records).
 
 
 <img src="./checkout-calendar.webp">
