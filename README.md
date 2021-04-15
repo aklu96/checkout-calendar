@@ -1,6 +1,6 @@
 # Checkout Calendar
 
-> Create a home listing page for a vacation rental application using a service based architecture in order to support up to 1M listings and associated data such as 3-month availability (total ~90M records). Recreation of Airbnb calendar module.
+> Backend infrastructure for the checkout and availability component of a microservices-based vacation rental listing application which supports up to 1M listings and associated data such as 3-month availability (total ~90M records). Recreation of Airbnb calendar module.
 
 
 <img src="./checkout-calendar.webp">
